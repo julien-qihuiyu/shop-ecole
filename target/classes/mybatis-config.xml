@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- Configure gloabl attributes -->
+	<settings>
+		<!-- Use getGeneratedKeys of jdbc get auto incremented primary keys -->
+		<setting name="useGeneratedKeys" value="true" />
+
+		<!-- use label to replace the alias default:true -->
+		<setting name="useColumnLabel" value="true" />
+
+		<!-- Transform to camel case: Table{create_time} -> Entity{createTime} -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		
+		<!-- print query -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+</configuration>
