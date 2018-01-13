@@ -33,6 +33,7 @@ public class ShopServiceImpl implements ShopService{
 			shop.setEnableStatus(0);
 			shop.setCreateTime(new Date());
 			shop.setLastEditTime(new Date());
+			shop.setShopImg(fileName);
 			int effectedNum = shopDao.insertShop(shop);
 			// 添加店铺信息
 			if(effectedNum <= 0) {
