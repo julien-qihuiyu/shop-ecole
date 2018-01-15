@@ -91,5 +91,18 @@ public class ImageUtil {
 		String nowTimeStr = sDateFormat.format(new Date());
 		return nowTimeStr + rannum;
 	}
+	
+	public static void deleteFileOrPath(String storePath) {
+		File fileOrPath = new File(getImgBasePath() + storePath);
+		if(fileOrPath.exists()) {
+			if(fileOrPath.isDirectory()) {
+				File files[] = fileOrPath.listFiles();
+				for(int i = 0; i< files.length; i++) {
+					files[i].delete();
+				}
+			}
+			fileOrPath.delete();
+		}
+	}
 
 }

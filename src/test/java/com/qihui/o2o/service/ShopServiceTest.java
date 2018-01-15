@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class ShopServiceTest extends BaseTest{
 	private ShopService shopService;
 	
 	@Test
+	@Ignore
 	public void testAddShop() throws FileNotFoundException {
 		Shop shop = new Shop();
 		PersonInfo owner = new PersonInfo();
@@ -51,5 +53,26 @@ public class ShopServiceTest extends BaseTest{
 		InputStream is = new FileInputStream(shopImg);
 		ShopExecution se = shopService.addShop(shop, is, shopImg.getName());
 		assertEquals(ShopStateEnum.CHECK.getState(), se.getState());
+	}
+	
+	@Test
+	@Ignore
+	public void testModifyShop() throws FileNotFoundException {
+		Shop shop = shopService.getByShopId(7L);
+		shop.setShopName("修改后的店铺名称");
+		File shopImg = new File("/Users/qihuiyu/Desktop/burger.jpeg");
+		InputStream is = new FileInputStream(shopImg);
+		ShopExecution se = shopService.modifyShop(shop, is, shopImg.getName());
+	}
+	
+	@Test
+	public void testGetShopList() {
+		Shop shopCondition = new Shop();
+		ShopCategory sc = new ShopCategory();
+		sc.setShopCategoryId(2L);
+		shopCondition.setShopCategory(sc);
+		ShopExecution se = shopService.getShopList(shopCondition, 2, 2);
+		System.out.println("店铺列表数为：" + se.getShopList().size());
+		System.out.println("店铺总数为：" + se.getCount());
 	}
 }
